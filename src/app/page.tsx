@@ -159,7 +159,7 @@ export default function Home() {
               <div className="text-4xl font-bold text-green-600 mb-2">5000+</div>
               <p className="text-gray-700 font-semibold">Lives Impacted</p>
               <p className="text-gray-600 text-sm mt-2">
-                Making a measurable difference in people's lives
+                Making a measurable difference in people&apos;s lives
               </p>
             </div>
 
@@ -174,7 +174,7 @@ export default function Home() {
 
           <div className="prose prose-lg max-w-none">
             <p className="text-gray-700 mb-6">
-              Founded on the principle that community care is everyone's responsibility, we have
+              Founded on the principle that community care is everyone&apos;s responsibility, we have
               grown from a small grassroots initiative to a trusted partner serving thousands.
               Our success is measured not in dollars, but in the lives we touch and the lasting
               change we create.
@@ -182,14 +182,14 @@ export default function Home() {
 
             <p className="text-gray-700 mb-6">
               We understand the unique challenges faced by elderly residents, low-income families,
-              and other vulnerable populations. That's why our programs are designed with input
+              and other vulnerable populations. That&apos;s why our programs are designed with input
               from the communities we serve, ensuring they truly address real needs.
             </p>
 
             <p className="text-gray-700">
               Through partnerships with local organizations, government agencies, and dedicated
               volunteers, we continue to expand our reach and deepen our impact. When you choose
-              to support Community Care, you're investing in a more compassionate, connected, and
+              to support Community Care, you&apos;re investing in a more compassionate, connected, and
               resilient community.
             </p>
           </div>
@@ -197,7 +197,7 @@ export default function Home() {
           <div className="mt-12 bg-gray-50 p-8 rounded-lg border border-gray-200">
             <h3 className="text-2xl font-bold mb-4 text-gray-900">Get Involved Today</h3>
             <p className="text-gray-700 mb-6">
-              Whether you need our services or want to make a difference as a volunteer, we'd love
+              Whether you need our services or want to make a difference as a volunteer, we&apos;d love
               to hear from you.
             </p>
             <Link href="/contact" className="btn-primary inline-block">

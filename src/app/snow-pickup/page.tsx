@@ -8,7 +8,7 @@ interface FormData {
   name: string;
   phone: string;
   address: string;
-  priority: string;
+  priority: 'high' | 'medium' | 'standard';
 }
 
 export default function SnowPickupPage() {
@@ -163,7 +163,7 @@ export default function SnowPickupPage() {
               {submitted && (
                 <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4">
                   <p className="text-green-800 font-semibold">
-                    ✓ Request submitted successfully! We'll contact you soon.
+                    ✓ Request submitted successfully! We&apos;ll contact you soon.
                   </p>
                 </div>
               )}
@@ -209,7 +209,7 @@ export default function SnowPickupPage() {
                     required
                     aria-required="true"
                   />
-                  <p className="text-gray-600 text-sm mt-2">We'll use this to confirm your request</p>
+                  <p className="text-gray-600 text-sm mt-2">We&apos;ll use this to confirm your request</p>
                 </div>
 
                 {/* Address Field */}
@@ -292,17 +292,17 @@ export default function SnowPickupPage() {
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">What's included in the service?</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">What&apos;s included in the service?</h3>
               <p className="text-gray-700">
-                We clear driveways, walkways, front steps, and roofs when safe to do so. We'll also
-                check on the accessibility of your home's main entrances.
+                We clear driveways, walkways, front steps, and roofs when safe to do so. We&apos;ll also
+                check on the accessibility of your home&apos;s main entrances.
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Can I request help for someone else?</h3>
               <p className="text-gray-700">
-                Yes! If you're requesting on behalf of an elderly neighbor or family member, please
+                Yes! If you&apos;re requesting on behalf of an elderly neighbor or family member, please
                 call us at (555) 123-4567 to discuss their needs.
               </p>
             </div>

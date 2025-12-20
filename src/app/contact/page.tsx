@@ -77,7 +77,7 @@ export default function ContactPage() {
         <div className="section-container">
           <h1 className="text-4xl sm:text-5xl font-bold mb-4">Get In Touch</h1>
           <p className="text-xl text-blue-100 max-w-2xl">
-            We'd love to hear from you. Reach out with questions, inquiries, or to get involved
+            We&apos;d love to hear from you. Reach out with questions, inquiries, or to get involved
           </p>
         </div>
       </section>
@@ -165,7 +165,7 @@ export default function ContactPage() {
               {submitted && (
                 <div className="mb-6 bg-green-50 border-2 border-green-200 rounded-lg p-4">
                   <p className="text-green-800 font-semibold">
-                    ✓ Message sent successfully! We'll get back to you soon.
+                    ✓ Message sent successfully! We&apos;ll get back to you soon.
                   </p>
                 </div>
               )}
