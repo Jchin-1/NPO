@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { submitContactForm } from '@/app/actions/contact';
 
 interface ContactFormData {
   name: string;
@@ -51,17 +52,22 @@ export default function ContactPage() {
     }
 
     try {
-      // Simulate form submission
-      console.log('Contact form submitted:', formData);
-      setSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-      });
-      setTimeout(() => setSubmitted(false), 5000);
+      // Call server action to send email
+      const response = await submitContactForm(formData);
+
+      if (response.success) {
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: '',
+        });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        setError(response.error || 'Failed to send message. Please try again.');
+      }
     } catch (err) {
       setError('Failed to send message. Please try again.');
       console.error('Submission error:', err);
