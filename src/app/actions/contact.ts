@@ -52,8 +52,8 @@ export async function submitContactForm(
 
     // Send email to admin
     const adminResponse = await resend.emails.send({
-      from: 'noreply@communitycare.org',
-      to: 'info@communitycare.org',
+      from: 'onboarding@resend.dev',
+      to: 'peelcommunityclub@gmail.com',
       subject: `New Contact Form: ${data.subject}`,
       html: `
         <h2>New Contact Form Submission</h2>
@@ -77,7 +77,7 @@ export async function submitContactForm(
 
     // Send confirmation email to user
     await resend.emails.send({
-      from: 'noreply@communitycare.org',
+      from: 'onboarding@resend.dev',
       to: data.email,
       subject: 'We received your message - Community Care',
       html: `
