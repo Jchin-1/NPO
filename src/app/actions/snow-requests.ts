@@ -372,3 +372,157 @@ export async function submitVolunteerApplication(
     };
   }
 }
+
+export interface CleanupRecommendationFormData {
+  name: string;
+  email: string;
+  phone?: string;
+  locationName: string;
+  locationType: 'park' | 'street' | 'playground' | 'parking-lot' | 'other';
+  address: string;
+  description: string;
+  cleanupType: 'litter' | 'graffiti' | 'overgrowth' | 'snow-removal' | 'multiple';
+  urgency: 'low' | 'medium' | 'high';
+}
+
+export interface SubmitCleanupRecommendationResponse {
+  success: boolean;
+  error?: string;
+  recommendationId?: string;
+}
+
+/**
+ * Server action to submit a public space cleanup recommendation
+ * Saves the recommendation to the Supabase PostgreSQL database
+ * 
+ * @param formData - The cleanup recommendation form data
+ * @returns Success/error response with recommendation ID
+ */
+export async function submitCleanupRecommendation(
+  formData: CleanupRecommendationFormData
+): Promise<SubmitCleanupRecommendationResponse> {
+  try {
+    // Validate required fields
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.locationName ||
+      !formData.locationType ||
+      !formData.address ||
+      !formData.description ||
+      !formData.cleanupType ||
+      !formData.urgency
+    ) {
+      return {
+        success: false,
+        error: 'Please fill in all required fields',
+      };
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return {
+        success: false,
+        error: 'Please enter a valid email address',
+      };
+    }
+
+    // Validate phone format if provided
+    if (formData.phone) {
+      const phoneRegex = /^[\d\s\-\(\)\+]+$/;
+      if (!phoneRegex.test(formData.phone)) {
+        return {
+          success: false,
+          error: 'Please enter a valid phone number',
+        };
+      }
+    }
+
+    // Validate enum values
+    const validLocationTypes = ['park', 'street', 'playground', 'parking-lot', 'other'];
+    const validCleanupTypes = ['litter', 'graffiti', 'overgrowth', 'snow-removal', 'multiple'];
+    const validUrgencies = ['low', 'medium', 'high'];
+
+    if (!validLocationTypes.includes(formData.locationType)) {
+      return {
+        success: false,
+        error: 'Invalid location type',
+      };
+    }
+
+    if (!validCleanupTypes.includes(formData.cleanupType)) {
+      return {
+        success: false,
+        error: 'Invalid cleanup type',
+      };
+    }
+
+    if (!validUrgencies.includes(formData.urgency)) {
+      return {
+        success: false,
+        error: 'Invalid urgency level',
+      };
+    }
+
+    // Insert into database
+    const { data, error } = await supabase
+      .from('cleanup_recommendations')
+      .insert([
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || null,
+          location_name: formData.locationName,
+          location_type: formData.locationType,
+          address: formData.address,
+          description: formData.description,
+          cleanup_type: formData.cleanupType,
+          urgency: formData.urgency,
+          status: 'pending',
+        },
+      ])
+      .select('id')
+      .single();
+
+    if (error) {
+      console.error('Database error:', error);
+      return {
+        success: false,
+        error: 'Failed to submit cleanup recommendation. Please try again later.',
+      };
+    }
+
+    // Log activity
+    await supabase.from('activity_log').insert([
+      {
+        action: 'New cleanup recommendation',
+        details: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          locationName: formData.locationName,
+          locationType: formData.locationType,
+          cleanupType: formData.cleanupType,
+          urgency: formData.urgency,
+        }),
+      },
+    ]);
+
+    console.log('Cleanup recommendation submitted successfully:', {
+      name: formData.name,
+      email: formData.email,
+      locationName: formData.locationName,
+    });
+
+    return {
+      success: true,
+      recommendationId: data?.id,
+    };
+  } catch (err) {
+    console.error('Cleanup recommendation submission error:', err);
+    return {
+      success: false,
+      error: 'An error occurred while submitting your cleanup recommendation',
+    };
+  }
+}

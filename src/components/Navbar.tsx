@@ -44,6 +44,12 @@ export default function Navbar() {
               Volunteer
             </Link>
             <Link
+              href="/cleanup-recommendation"
+              className="text-gray-700 hover:text-blue-600 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 px-2 py-1 rounded"
+            >
+              Cleanup
+            </Link>
+            <Link
               href="/snow-pickup"
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 px-2 py-1 rounded"
             >
@@ -94,6 +100,13 @@ export default function Navbar() {
               onClick={() => setIsOpen(false)}
             >
               Volunteer
+            </Link>
+            <Link
+              href="/cleanup-recommendation"
+              className="block px-2 py-2 text-gray-700 hover:text-blue-600 font-medium"
+              onClick={() => setIsOpen(false)}
+            >
+              Cleanup
             </Link>
             <Link
               href="/snow-pickup"
