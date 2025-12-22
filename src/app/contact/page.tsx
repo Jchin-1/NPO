@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import { submitContactForm } from '@/app/actions/contact';
+import BramptonMap from '@/components/BramptonMap';
 
 interface ContactFormData {
   name: string;
@@ -291,17 +292,12 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map Section (Placeholder) */}
+      {/* Map Section */}
       <section className="bg-gray-100 border-t border-gray-200 py-16">
         <div className="section-container">
-          <h2 className="section-title text-center mb-12">Find Us</h2>
-          <div className="bg-gradient-to-br from-gray-300 to-gray-400 rounded-lg aspect-video flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="w-16 h-16 mx-auto mb-4 text-gray-600 opacity-70" />
-              <p className="text-gray-700 text-lg">Interactive Map Placeholder</p>
-              <p className="text-gray-600 text-sm mt-2">123 Main Street, City, State 12345</p>
-            </div>
-          </div>
+          <h2 className="section-title text-center mb-12">Service Area - Peel Region</h2>
+          <BramptonMap />
+          <p className="text-center text-gray-600 mt-4">We serve Brampton, Mississauga, and Caledon</p>
         </div>
       </section>
     </div>
