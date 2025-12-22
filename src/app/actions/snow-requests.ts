@@ -265,3 +265,110 @@ export async function getHighPriorityRequests() {
     };
   }
 }
+
+/**
+ * Server action to submit a volunteer application
+ */
+export interface VolunteerFormData {
+  name: string;
+  email: string;
+  phone: string;
+  availability: string;
+  skills: string;
+}
+
+export interface SubmitVolunteerResponse {
+  success: boolean;
+  error?: string;
+  volunteerId?: string;
+}
+
+export async function submitVolunteerApplication(
+  data: VolunteerFormData
+): Promise<SubmitVolunteerResponse> {
+  try {
+    // Validate required fields
+    if (!data.name || !data.email) {
+      return {
+        success: false,
+        error: 'Name and email are required',
+      };
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data.email)) {
+      return {
+        success: false,
+        error: 'Please enter a valid email address',
+      };
+    }
+
+    // Check if volunteer already exists
+    const { data: existingVolunteer, error: checkError } = await supabase
+      .from('volunteers')
+      .select('id')
+      .eq('email', data.email)
+      .single();
+
+    if (checkError && checkError.code !== 'PGRST116') {
+      // PGRST116 = no rows returned (expected)
+      console.error('Error checking for existing volunteer:', checkError);
+    }
+
+    if (existingVolunteer) {
+      return {
+        success: false,
+        error: 'This email is already registered as a volunteer',
+      };
+    }
+
+    // Insert volunteer into database
+    const { data: insertedVolunteer, error: insertError } = await supabase
+      .from('volunteers')
+      .insert([
+        {
+          name: data.name,
+          email: data.email,
+          phone: data.phone || null,
+          availability: data.availability || null,
+          skills: data.skills || null,
+          is_active: true,
+        },
+      ])
+      .select('id')
+      .single();
+
+    if (insertError) {
+      console.error('Supabase insert error:', insertError);
+      return {
+        success: false,
+        error: 'Failed to submit volunteer application',
+      };
+    }
+
+    // Log the volunteer signup
+    await supabase.from('activity_log').insert([
+      {
+        action: 'New volunteer application',
+        details: `${data.name} (${data.email}) applied to volunteer`,
+      },
+    ]);
+
+    console.log('Volunteer application submitted successfully:', {
+      name: data.name,
+      email: data.email,
+    });
+
+    return {
+      success: true,
+      volunteerId: insertedVolunteer?.id,
+    };
+  } catch (err) {
+    console.error('Volunteer submission error:', err);
+    return {
+      success: false,
+      error: 'An error occurred while submitting your volunteer application',
+    };
+  }
+}

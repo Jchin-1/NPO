@@ -1,4 +1,5 @@
 import { Leaf, Heart, Users, Home, Wind, AlertCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ActivitiesPage() {
   const projects = [
@@ -128,12 +129,12 @@ export default function ActivitiesPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="btn-primary">
+            <Link href="/volunteer" className="btn-primary text-center">
               Become a Volunteer
-            </button>
-            <button className="btn-secondary">
+            </Link>
+            <Link href="/snow-pickup" className="btn-secondary text-center">
               Request Assistance
-            </button>
+            </Link>
           </div>
         </div>
       </section>
