@@ -41,8 +41,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const checkAdminStatus = (email: string | undefined) => {
-    // List of admin emails - you can move this to environment variables or database
-    const adminEmails = process.env.NEXT_PUBLIC_ADMIN_EMAILS?.split(',') || [];
+    // List of admin emails - trim whitespace from each email
+    const adminEmails = process.env.NEXT_PUBLIC_ADMIN_EMAILS?.split(',').map(e => e.trim()) || [];
     setIsAdmin(email ? adminEmails.includes(email) : false);
   };
 

@@ -97,9 +97,17 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8">
-          <p className="text-center text-gray-400">
-            &copy; {currentYear} Community Care NPO. All rights reserved.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-between">
+            <p className="text-gray-400 text-sm">
+              &copy; {currentYear} Community Care NPO. All rights reserved.
+            </p>
+            <Link
+              href="/login"
+              className="text-gray-400 hover:text-gray-200 text-sm font-medium transition-colors mt-4 sm:mt-0"
+            >
+              Admin
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

@@ -99,15 +99,6 @@ export default function Navbar() {
                 </button>
               </>
             )}
-
-            {isMounted && !loading && !user && (
-              <Link
-                href="/login"
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors"
-              >
-                Admin Login
-              </Link>
-            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -191,16 +182,6 @@ export default function Navbar() {
                   Logout
                 </button>
               </>
-            )}
-
-            {isMounted && !loading && !user && (
-              <Link
-                href="/login"
-                className="block px-2 py-2 mt-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-center"
-                onClick={() => setIsOpen(false)}
-              >
-                Admin Login
-              </Link>
             )}
           </div>
         )}
