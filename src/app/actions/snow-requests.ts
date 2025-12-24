@@ -526,3 +526,140 @@ export async function submitCleanupRecommendation(
     };
   }
 }
+
+export interface FoodClothsDriveFormData {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  driveType: 'food' | 'clothes' | 'both';
+  itemsDescription: string;
+  quantity: string;
+  pickupDate: string;
+  pickupTime: string;
+  specialInstructions?: string;
+}
+
+export interface SubmitFoodClothsDriveResponse {
+  success: boolean;
+  error?: string;
+  donationId?: string;
+}
+
+/**
+ * Server action to submit a food/clothes drive donation request
+ * Saves the donation to the Supabase PostgreSQL database for volunteer pickup
+ * 
+ * @param formData - The food/clothes drive form data
+ * @returns Success/error response with donation ID
+ */
+export async function submitFoodClothsDrive(
+  formData: FoodClothsDriveFormData
+): Promise<SubmitFoodClothsDriveResponse> {
+  try {
+    // Validate required fields
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.phone ||
+      !formData.address ||
+      !formData.driveType ||
+      !formData.itemsDescription ||
+      !formData.quantity ||
+      !formData.pickupDate ||
+      !formData.pickupTime
+    ) {
+      return {
+        success: false,
+        error: 'Please fill in all required fields',
+      };
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return {
+        success: false,
+        error: 'Please enter a valid email address',
+      };
+    }
+
+    // Validate phone format
+    const phoneRegex = /^[\d\s\-\(\)\+]+$/;
+    if (!phoneRegex.test(formData.phone)) {
+      return {
+        success: false,
+        error: 'Please enter a valid phone number',
+      };
+    }
+
+    // Validate drive type
+    const validDriveTypes = ['food', 'clothes', 'both'];
+    if (!validDriveTypes.includes(formData.driveType)) {
+      return {
+        success: false,
+        error: 'Invalid drive type',
+      };
+    }
+
+    // Insert into database
+    const { data, error } = await supabase
+      .from('food_clothes_drives')
+      .insert([
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          drive_type: formData.driveType,
+          items_description: formData.itemsDescription,
+          quantity: formData.quantity,
+          pickup_date: formData.pickupDate,
+          pickup_time: formData.pickupTime,
+          special_instructions: formData.specialInstructions || null,
+          status: 'pending',
+        },
+      ])
+      .select('id')
+      .single();
+
+    if (error) {
+      console.error('Database error:', error);
+      return {
+        success: false,
+        error: 'Failed to submit donation request. Please try again later.',
+      };
+    }
+
+    // Log activity
+    await supabase.from('activity_log').insert([
+      {
+        action: 'New food/clothes drive donation request',
+        details: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          driveType: formData.driveType,
+          quantity: formData.quantity,
+          pickupDate: formData.pickupDate,
+        }),
+      },
+    ]);
+
+    console.log('Food/clothes drive submitted successfully:', {
+      name: formData.name,
+      email: formData.email,
+      driveType: formData.driveType,
+    });
+
+    return {
+      success: true,
+      donationId: data?.id,
+    };
+  } catch (err) {
+    console.error('Food/clothes drive submission error:', err);
+    return {
+      success: false,
+      error: 'An error occurred while submitting your donation request',
+    };
+  }
+}

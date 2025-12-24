@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/AuthContext';
-import { BarChart3, FileText, Users, Trash2, LogOut } from 'lucide-react';
+import { BarChart3, FileText, Users, Trash2, LogOut, Gift } from 'lucide-react';
 import { signOut } from '@/lib/auth';
 import Link from 'next/link';
 
@@ -63,17 +63,17 @@ export default function AdminDashboardPage() {
       <div className="section-container py-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-8">Manage Submissions</h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Snow Requests Card */}
           <Link href="/admin/snow-requests">
             <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer border-l-4 border-blue-600">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900">Snow Removal Requests</h3>
+                <h3 className="text-lg font-semibold text-gray-900">Snow Removal</h3>
                 <div className="bg-blue-100 p-3 rounded-lg">
                   <FileText className="w-6 h-6 text-blue-600" />
                 </div>
               </div>
-              <p className="text-gray-600 mb-4">View and manage snow removal service requests from the community.</p>
+              <p className="text-gray-600 mb-4 text-sm">Snow removal service requests from the community.</p>
               <div className="text-sm text-blue-600 font-semibold">View Details →</div>
             </div>
           </Link>
@@ -82,12 +82,12 @@ export default function AdminDashboardPage() {
           <Link href="/admin/volunteers">
             <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer border-l-4 border-green-600">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900">Volunteer Applications</h3>
+                <h3 className="text-lg font-semibold text-gray-900">Volunteers</h3>
                 <div className="bg-green-100 p-3 rounded-lg">
                   <Users className="w-6 h-6 text-green-600" />
                 </div>
               </div>
-              <p className="text-gray-600 mb-4">Review and manage volunteer applications and registrations.</p>
+              <p className="text-gray-600 mb-4 text-sm">Volunteer applications and registrations.</p>
               <div className="text-sm text-green-600 font-semibold">View Details →</div>
             </div>
           </Link>
@@ -96,13 +96,27 @@ export default function AdminDashboardPage() {
           <Link href="/admin/cleanup-recommendations">
             <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer border-l-4 border-purple-600">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900">Cleanup Recommendations</h3>
+                <h3 className="text-lg font-semibold text-gray-900">Cleanups</h3>
                 <div className="bg-purple-100 p-3 rounded-lg">
                   <Trash2 className="w-6 h-6 text-purple-600" />
                 </div>
               </div>
-              <p className="text-gray-600 mb-4">View community recommendations for public space cleanups.</p>
+              <p className="text-gray-600 mb-4 text-sm">Public space cleanup recommendations.</p>
               <div className="text-sm text-purple-600 font-semibold">View Details →</div>
+            </div>
+          </Link>
+
+          {/* Donations Card */}
+          <Link href="/admin/food-clothes-drives">
+            <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer border-l-4 border-amber-600">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-900">Donations</h3>
+                <div className="bg-amber-100 p-3 rounded-lg">
+                  <Gift className="w-6 h-6 text-amber-600" />
+                </div>
+              </div>
+              <p className="text-gray-600 mb-4 text-sm">Food & clothes drive donations for pickup.</p>
+              <div className="text-sm text-amber-600 font-semibold">View Details →</div>
             </div>
           </Link>
         </div>
