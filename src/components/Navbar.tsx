@@ -1,13 +1,29 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { Menu, X, LogOut, Shield } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/lib/AuthContext';
+import { signOut } from '@/lib/auth';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, isAdmin, loading } = useAuth();
+  const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const handleLogout = async () => {
+    await signOut();
+    router.push('/');
+    setIsOpen(false);
+  };
 
   return (
     <nav className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
@@ -24,7 +40,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-8">
+          <div className="hidden md:flex gap-8 items-center">
             <Link
               href="/"
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 px-2 py-1 rounded"
@@ -61,6 +77,37 @@ export default function Navbar() {
             >
               Contact
             </Link>
+
+            {/* Auth Links */}
+            {isMounted && !loading && user && (
+              <>
+                {isAdmin && (
+                  <Link
+                    href="/admin"
+                    className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 px-2 py-1 rounded bg-blue-50"
+                  >
+                    <Shield className="w-4 h-4" />
+                    Admin
+                  </Link>
+                )}
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 text-red-600 hover:text-red-700 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 px-2 py-1 rounded"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Logout
+                </button>
+              </>
+            )}
+
+            {isMounted && !loading && !user && (
+              <Link
+                href="/login"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors"
+              >
+                Admin Login
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -122,6 +169,39 @@ export default function Navbar() {
             >
               Contact
             </Link>
+
+            {/* Mobile Auth Links */}
+            {isMounted && !loading && user && (
+              <>
+                {isAdmin && (
+                  <Link
+                    href="/admin"
+                    className="flex items-center gap-2 px-2 py-2 text-blue-600 hover:text-blue-700 font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Shield className="w-4 h-4" />
+                    Admin
+                  </Link>
+                )}
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 w-full px-2 py-2 text-red-600 hover:text-red-700 font-medium text-left"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Logout
+                </button>
+              </>
+            )}
+
+            {isMounted && !loading && !user && (
+              <Link
+                href="/login"
+                className="block px-2 py-2 mt-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-center"
+                onClick={() => setIsOpen(false)}
+              >
+                Admin Login
+              </Link>
+            )}
           </div>
         )}
       </div>
