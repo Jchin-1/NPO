@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { Mail, Clock } from 'lucide-react';
 import { submitContactForm } from '@/app/actions/contact';
 import BramptonMap from '@/components/BramptonMap';
 
