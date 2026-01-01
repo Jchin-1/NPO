@@ -8,7 +8,7 @@ import { AuthProvider } from '@/lib/AuthContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Community Care NPO',
+  title: 'Peel Community Club',
   description: 'Serving our community with compassion and excellence',
 };
 

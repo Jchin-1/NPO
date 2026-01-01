@@ -79,7 +79,7 @@ export async function submitContactForm(
     await resend.emails.send({
       from: 'onboarding@resend.dev',
       to: data.email,
-      subject: 'We received your message - Community Care',
+      subject: 'We received your message - Peel Community Club',
       html: `
         <h2>Thank you, ${data.name}!</h2>
         <p>We received your message and will get back to you as soon as possible.</p>
@@ -88,7 +88,7 @@ export async function submitContactForm(
         <p><strong>Subject:</strong> ${data.subject}</p>
         <p>${data.message.replace(/\n/g, '<br>')}</p>
         <hr />
-        <p>Best regards,<br>Community Care Team</p>
+        <p>Best regards,<br>Peel Community Club Team</p>
       `,
     });
 

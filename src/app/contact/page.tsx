@@ -97,20 +97,6 @@ export default function ContactPage() {
             <div className="lg:col-span-1">
               <h2 className="text-2xl font-bold text-gray-900 mb-8">Contact Information</h2>
 
-              {/* Phone */}
-              <div className="flex gap-4 mb-8">
-                <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                  <p className="text-gray-700">(555) 123-4567</p>
-                  <p className="text-sm text-gray-600 mt-1">
-                    Monday - Friday, 9am - 5pm
-                  </p>
-                </div>
-              </div>
-
               {/* Email */}
               <div className="flex gap-4 mb-8">
                 <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -118,24 +104,9 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                  <p className="text-gray-700">info@communitycare.org</p>
+                  <p className="text-gray-700">peelcommunityclub@gmail.com</p>
                   <p className="text-sm text-gray-600 mt-1">
                     Response within 24 hours
-                  </p>
-                </div>
-              </div>
-
-              {/* Address */}
-              <div className="flex gap-4 mb-8">
-                <div className="bg-red-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-red-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Office</h3>
-                  <p className="text-gray-700">
-                    123 Main Street
-                    <br />
-                    City, State 12345
                   </p>
                 </div>
               </div>
@@ -153,15 +124,6 @@ export default function ContactPage() {
                     9:00 AM - 5:00 PM
                   </p>
                 </div>
-              </div>
-
-              {/* Emergency */}
-              <div className="mt-8 bg-red-50 border-2 border-red-200 rounded-lg p-6">
-                <p className="font-semibold text-red-900 mb-2">Emergency Support</p>
-                <p className="text-red-800 text-sm mb-3">
-                  For urgent needs outside business hours, call our emergency line:
-                </p>
-                <p className="text-red-900 font-bold text-lg">(555) 999-HELP</p>
               </div>
             </div>
 
@@ -217,22 +179,6 @@ export default function ContactPage() {
                     className="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200"
                     required
                     aria-required="true"
-                  />
-                </div>
-
-                {/* Phone Field */}
-                <div>
-                  <label htmlFor="phone" className="block text-lg font-semibold text-gray-900 mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="(555) 123-4567"
-                    className="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200"
                   />
                 </div>
 

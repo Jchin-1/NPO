@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="section-container">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 md:max-w-4xl md:mx-auto">
           {/* Company Info */}
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -66,47 +66,20 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-gray-400">
               <li className="flex gap-2 items-start">
-                <Phone className="w-5 h-5 flex-shrink-0 mt-1" />
-                <span>(555) 123-4567</span>
-              </li>
-              <li className="flex gap-2 items-start">
                 <Mail className="w-5 h-5 flex-shrink-0 mt-1" />
-                <span>info@communitycare.org</span>
-              </li>
-              <li className="flex gap-2 items-start">
-                <MapPin className="w-5 h-5 flex-shrink-0 mt-1" />
-                <span>123 Main St, City, State 12345</span>
+                <span>peelcommunityclub@gmail.com</span>
               </li>
             </ul>
           </div>
 
-          {/* Social Media */}
-          <div>
-            <h4 className="font-semibold mb-4">Follow Us</h4>
-            <div className="flex gap-4">
-              <a
-                href="#"
-                className="bg-gray-800 hover:bg-blue-600 p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="bg-gray-800 hover:bg-blue-600 p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
+          {/* Social Media - Removed */}
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col sm:flex-row items-center justify-between">
             <p className="text-gray-400 text-sm">
-              &copy; {currentYear} Community Care NPO. All rights reserved.
+              &copy; {currentYear} Peel Community Club. All rights reserved.
             </p>
             <Link
               href="/login"

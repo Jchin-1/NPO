@@ -139,7 +139,7 @@ export default function Home() {
       <section className="bg-white">
         <div className="section-container">
           <div className="text-center mb-12">
-            <h2 className="section-title">About Community Care</h2>
+            <h2 className="section-title">About Peel Community Club</h2>
             <p className="section-subtitle">
               Building stronger communities, one life at a time
             </p>
@@ -147,18 +147,18 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="bg-blue-50 p-8 rounded-lg border border-blue-200">
-              <div className="text-4xl font-bold text-blue-600 mb-2">15+</div>
-              <p className="text-gray-700 font-semibold">Years of Service</p>
+              <div className="text-4xl font-bold text-blue-600 mb-2">50+</div>
+              <p className="text-gray-700 font-semibold">Volunteer Hours Contributed</p>
               <p className="text-gray-600 text-sm mt-2">
-                Serving our community with dedication and compassion
+                Time dedicated to direct community support
               </p>
             </div>
 
             <div className="bg-green-50 p-8 rounded-lg border border-green-200">
-              <div className="text-4xl font-bold text-green-600 mb-2">5000+</div>
-              <p className="text-gray-700 font-semibold">Lives Impacted</p>
+              <div className="text-4xl font-bold text-green-600 mb-2">15+</div>
+              <p className="text-gray-700 font-semibold">Driveways Cleared for Seniors</p>
               <p className="text-gray-600 text-sm mt-2">
-                Making a measurable difference in people&apos;s lives
+                During winter snow-assistance efforts
               </p>
             </div>
 
@@ -188,7 +188,7 @@ export default function Home() {
             <p className="text-gray-700">
               Through partnerships with local organizations, government agencies, and dedicated
               volunteers, we continue to expand our reach and deepen our impact. When you choose
-              to support Community Care, you&apos;re investing in a more compassionate, connected, and
+              to support Peel Community Club, you&apos;re investing in a more compassionate, connected, and
               resilient community.
             </p>
           </div>

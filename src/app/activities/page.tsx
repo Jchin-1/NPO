@@ -19,7 +19,7 @@ export default function ActivitiesPage() {
         'Nutritious meal delivery for homebound seniors and low-income families, ensuring food security and social connection.',
       icon: Heart,
       color: 'red',
-      status: 'Active',
+      status: 'Coming Soon',
     },
     {
       id: 3,
@@ -37,7 +37,7 @@ export default function ActivitiesPage() {
         'Digital literacy classes helping seniors stay connected with family and access online services safely and confidently.',
       icon: Users,
       color: 'purple',
-      status: 'Active',
+      status: 'Coming Soon',
     },
     {
       id: 5,
@@ -55,7 +55,7 @@ export default function ActivitiesPage() {
         'Rapid response funding for residents facing unexpected crises—medical expenses, utility shutoffs, or emergency housing.',
       icon: AlertCircle,
       color: 'pink',
-      status: 'Active',
+      status: 'Coming Soon',
     },
   ];
 

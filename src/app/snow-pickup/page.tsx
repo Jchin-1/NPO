@@ -303,7 +303,7 @@ export default function SnowPickupPage() {
               <h3 className="text-xl font-bold text-gray-900 mb-3">Can I request help for someone else?</h3>
               <p className="text-gray-700">
                 Yes! If you&apos;re requesting on behalf of an elderly neighbor or family member, please
-                call us at (555) 123-4567 to discuss their needs.
+                email us at peelcommunityclub@gmail.com to discuss their needs.
               </p>
             </div>
           </div>
