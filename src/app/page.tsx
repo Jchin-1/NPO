@@ -28,15 +28,14 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            {/* Hero Image Placeholder */}
+            {/* Hero Image */}
             <div className="hidden lg:block">
-              <div className="bg-blue-500 rounded-lg aspect-video flex items-center justify-center overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                  <div className="text-center">
-                    <Users className="w-24 h-24 mx-auto mb-4 opacity-80" />
-                    <p className="text-blue-100 text-lg">High-Impact Community Image</p>
-                  </div>
-                </div>
+              <div className="rounded-lg overflow-hidden shadow-xl">
+                <img
+                  src="/images/npo high impact image.jpeg"
+                  alt="Community service in action"
+                  className="w-full h-auto object-cover"
+                />
               </div>
             </div>
           </div>

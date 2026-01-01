@@ -12,7 +12,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Community Care</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <img
+                src="/images/logos/npo logo.png"
+                alt="Peel Community Club"
+                className="h-10 w-auto"
+              />
+              <h3 className="text-xl font-bold">Peel Community Club</h3>
+            </div>
             <p className="text-gray-400 mb-4">
               Dedicated to serving and supporting our community with compassion.
             </p>

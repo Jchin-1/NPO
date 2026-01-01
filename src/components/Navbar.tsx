@@ -31,11 +31,13 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
-              CC
-            </div>
+            <img
+              src="/images/logos/npo logo.png"
+              alt="Peel Community Club"
+              className="h-10 w-auto"
+            />
             <span className="font-bold text-xl text-gray-900 hidden sm:inline">
-              Community Care
+              Peel Community Club
             </span>
           </Link>
 
