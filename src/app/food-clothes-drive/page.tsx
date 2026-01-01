@@ -64,24 +64,27 @@ export default function FoodClothesDrivePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4 sm:px-6 lg:px-8">
-      {/* Header Section */}
-      <div className="section-container mb-12">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="bg-blue-600 p-3 rounded-lg">
-            <Gift className="w-8 h-8 text-white" />
+    <div>
+      {/* Page Header */}
+      <section className="bg-gradient-to-b from-blue-600 to-blue-700 text-white">
+        <div className="section-container">
+          <div className="flex items-start gap-4 mb-6">
+            <Gift className="w-12 h-12 flex-shrink-0" />
+            <div>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4">Food & Clothes Drive</h1>
+              <p className="text-xl text-blue-100 max-w-2xl">
+                Have donations to give? Schedule a volunteer pickup from your home. We collect food and clothing items to help families in need across our community.
+              </p>
+            </div>
           </div>
-          <h1 className="section-title">Food & Clothes Drive</h1>
         </div>
-        <p className="text-lg text-gray-700">
-          Have donations to give? Schedule a volunteer pickup from your home. We collect food and clothing items to help families in need across our community.
-        </p>
-      </div>
+      </section>
 
-      {/* Benefits Section */}
-      <div className="section-container mb-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">How It Works</h2>
-        <div className="grid md:grid-cols-3 gap-6">
+      {/* Main Content */}
+      <div className="bg-white">
+        <div className="section-container">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">How It Works</h2>
+          <div className="grid md:grid-cols-3 gap-6 mb-12\">
           <div className="bg-white p-6 rounded-lg border border-gray-200">
             <div className="text-3xl mb-3">📝</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Fill Out Form</h3>
@@ -100,11 +103,13 @@ export default function FoodClothesDrivePage() {
             <p className="text-gray-700">Our volunteers will come to your home and collect the donations.</p>
           </div>
         </div>
+        </div>
       </div>
 
       {/* Form Section */}
-      <div className="section-container bg-white rounded-lg border border-gray-200 p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Schedule Your Donation Pickup</h2>
+      <section className="bg-white border-t border-gray-200">
+        <div className="section-container">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Schedule Your Donation Pickup</h2>
 
         {/* Success Message */}
         {success && (
@@ -362,7 +367,8 @@ export default function FoodClothesDrivePage() {
             <p className="mt-3 text-gray-700">Contact us as soon as possible at the email or phone number on your confirmation. We&apos;ll work with you to find a better time.</p>
           </details>
         </div>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }

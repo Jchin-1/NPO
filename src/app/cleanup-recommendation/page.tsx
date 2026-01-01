@@ -62,24 +62,27 @@ export default function CleanupRecommendationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4 sm:px-6 lg:px-8">
-      {/* Header Section */}
-      <div className="section-container mb-12">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="bg-blue-600 p-3 rounded-lg">
-            <MapPin className="w-8 h-8 text-white" />
+    <div>
+      {/* Page Header */}
+      <section className="bg-gradient-to-b from-blue-600 to-blue-700 text-white">
+        <div className="section-container">
+          <div className="flex items-start gap-4 mb-6">
+            <MapPin className="w-12 h-12 flex-shrink-0" />
+            <div>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4">Recommend a Public Space for Cleanup</h1>
+              <p className="text-xl text-blue-100 max-w-2xl">
+                See a public area that needs attention? Share your recommendation with us. We review all submissions and prioritize cleanup efforts based on community feedback.
+              </p>
+            </div>
           </div>
-          <h1 className="section-title">Recommend a Public Space for Cleanup</h1>
         </div>
-        <p className="text-lg text-gray-700">
-          See a public area that needs attention? Share your recommendation with us. We review all submissions and prioritize cleanup efforts based on community feedback.
-        </p>
-      </div>
+      </section>
 
-      {/* Benefits Section */}
-      <div className="section-container mb-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Why Report a Location?</h2>
-        <div className="grid md:grid-cols-3 gap-6">
+      {/* Main Content */}
+      <div className="bg-white">
+        <div className="section-container">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Why Report a Location?</h2>
+          <div className="grid md:grid-cols-3 gap-6 mb-12\">
           <div className="bg-white p-6 rounded-lg border border-gray-200">
             <div className="text-3xl mb-3">🔍</div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Help Identify Problem Areas</h3>
@@ -98,18 +101,20 @@ export default function CleanupRecommendationPage() {
             <p className="text-gray-700">Be part of keeping our community parks, streets, and public spaces clean.</p>
           </div>
         </div>
+        </div>
       </div>
 
       {/* Form Section */}
-      <div className="section-container bg-white rounded-lg border border-gray-200 p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Submit Your Recommendation</h2>
+      <section className="bg-white border-t border-gray-200">
+        <div className="section-container">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Submit Your Recommendation</h2>
 
-        {/* Success Message */}
-        {success && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
-            <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="font-semibold text-green-900">Thank You!</p>
+          {/* Success Message */}
+          {success && (
+            <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
+              <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="font-semibold text-green-900">Thank You!</p>
               <p className="text-green-800">Your cleanup recommendation has been submitted successfully. We appreciate your feedback!</p>
             </div>
           </div>
@@ -360,7 +365,8 @@ export default function CleanupRecommendationPage() {
             <p className="mt-3 text-gray-700">Absolutely! Visit our <a href="/volunteer" className="text-blue-600 font-semibold hover:underline">Volunteer page</a> to join our team and contribute to community cleanup efforts.</p>
           </details>
         </div>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }
