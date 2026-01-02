@@ -1,14 +1,17 @@
-# NPO Website
+# Peel Community Club Website
 
-A comprehensive Next.js-based website for a Non-Profit Organization, featuring:
+A comprehensive Next.js-based website for Peel Community Club, a non-profit organization providing community services. Features include:
 
-- **Home Page**: Hero section, values grid, mission statement, and about us
-- **Activities Page**: Card-based layout showcasing NPO projects
-- **Contact Page**: Functional contact form with multiple subject options
-- **Snow Pickup Page**: Service request form for elderly residents
-- **Database Integration**: Supabase PostgreSQL backend for snow requests
+- **Home Page**: Hero section with logo, values grid, mission statement, and impact statistics
+- **Activities Page**: Card-based layout showcasing NPO projects (Winter Support, Community Garden, Home Repair, etc.)
+- **Contact Page**: Functional contact form with email support
+- **Snow Pickup Page**: Service request form for elderly and vulnerable residents
+- **Food & Clothes Drive Page**: Donation scheduling and pickup coordination
+- **Cleanup Recommendation Page**: Community-driven cleanup initiative suggestions
+- **Database Integration**: Supabase PostgreSQL backend for service requests
 - **Responsive Design**: Mobile-first approach for all devices
 - **Accessibility**: High contrast UI optimized for elderly users
+- **Branding**: NPO logo integration and branded styling throughout
 
 ## Technologies Used
 
@@ -17,6 +20,7 @@ A comprehensive Next.js-based website for a Non-Profit Organization, featuring:
 - **Icons**: Lucide React
 - **Database**: Supabase (PostgreSQL)
 - **Language**: TypeScript
+- **Email**: Resend for transactional emails
 
 ## Getting Started
 
@@ -24,6 +28,7 @@ A comprehensive Next.js-based website for a Non-Profit Organization, featuring:
 
 - Node.js 18+ and npm
 - Supabase account (https://supabase.com)
+- Resend account for email notifications
 
 ### Installation
 
@@ -37,9 +42,10 @@ npm install
 cp .env.example .env.local
 ```
 
-Then edit `.env.local` with your Supabase credentials:
+Then edit `.env.local` with your credentials:
 - `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase project URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Your Supabase anonymous key
+- `RESEND_API_KEY`: Your Resend API key for email notifications
 
 3. Set up the database:
    - Go to your Supabase dashboard

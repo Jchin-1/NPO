@@ -104,13 +104,14 @@ export default function Home() {
       <section className="bg-gray-50 border-y border-gray-200">
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Mission Image Placeholder */}
+            {/* Mission Image */}
             <div className="hidden lg:block">
-              <div className="bg-gradient-to-br from-green-400 to-blue-500 rounded-lg aspect-video flex items-center justify-center">
-                <div className="text-center">
-                  <Award className="w-24 h-24 mx-auto mb-4 text-white opacity-80" />
-                  <p className="text-white text-lg">Our Mission Impact</p>
-                </div>
+              <div className="rounded-lg overflow-hidden shadow-xl">
+                <img
+                  src="/images/npo mission image.jpg"
+                  alt="Peel Community Club Mission"
+                  className="w-full h-auto object-cover"
+                />
               </div>
             </div>
 
