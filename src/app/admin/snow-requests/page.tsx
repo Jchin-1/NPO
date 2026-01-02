@@ -6,6 +6,7 @@ import { useAuth } from '@/lib/AuthContext';
 import { supabase } from '@/lib/auth';
 import { ArrowLeft, Loader } from 'lucide-react';
 import Link from 'next/link';
+import { updateSnowRequestStatus } from '@/app/actions/snow-requests';
 
 interface SnowRequest {
   id: string;
@@ -24,6 +25,7 @@ export default function AdminSnowRequestsPage() {
   const [requests, setRequests] = useState<SnowRequest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
+  const [updatingId, setUpdatingId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -62,6 +64,32 @@ export default function AdminSnowRequestsPage() {
       setError('An error occurred while fetching requests');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleStatusChange = async (
+    requestId: string,
+    newStatus: 'pending' | 'confirmed' | 'in-progress' | 'completed' | 'cancelled'
+  ) => {
+    setUpdatingId(requestId);
+    try {
+      const response = await updateSnowRequestStatus(requestId, newStatus);
+
+      if (response.success) {
+        // Update the request in the local state
+        setRequests((prevRequests) =>
+          prevRequests.map((req) =>
+            req.id === requestId ? { ...req, status: newStatus } : req
+          )
+        );
+      } else {
+        setError(response.error || 'Failed to update status');
+      }
+    } catch (err) {
+      console.error('Error updating status:', err);
+      setError('An error occurred while updating the status');
+    } finally {
+      setUpdatingId(null);
     }
   };
 
@@ -165,9 +193,23 @@ export default function AdminSnowRequestsPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getStatusColor(request.status)}`}>
-                        {request.status.charAt(0).toUpperCase() + request.status.slice(1)}
-                      </span>
+                      <select
+                        value={request.status}
+                        onChange={(e) =>
+                          handleStatusChange(
+                            request.id,
+                            e.target.value as 'pending' | 'confirmed' | 'in-progress' | 'completed' | 'cancelled'
+                          )
+                        }
+                        disabled={updatingId === request.id}
+                        className={`px-3 py-1 rounded-full text-sm font-semibold border-2 cursor-pointer ${getStatusColor(request.status)} disabled:opacity-50`}
+                      >
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                      </select>
                     </td>
                     <td className="px-6 py-4 text-gray-700">{new Date(request.created_at).toLocaleDateString()}</td>
                   </tr>
